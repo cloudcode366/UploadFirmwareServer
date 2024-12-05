@@ -1,7 +1,10 @@
 package com.wiramin.learn.uploadfirmwareserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "firmware")
@@ -14,4 +17,8 @@ public class Firmware {
     private Double firmwareVersion;
     private String firmwareUrl;
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "idDevice")
+    @JsonIgnore
+    private Device idDevice;
 }

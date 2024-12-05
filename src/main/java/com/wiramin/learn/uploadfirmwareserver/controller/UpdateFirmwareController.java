@@ -4,10 +4,9 @@ import com.wiramin.learn.uploadfirmwareserver.entity.Firmware;
 import com.wiramin.learn.uploadfirmwareserver.service.FirmwareService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UpdateFirmwareController {
     private final FirmwareService firmwareService;
     
-    @GetMapping("/latest")
-    public ResponseEntity<Firmware> latest() {
-        return ResponseEntity.ok(firmwareService.getNewestFirmware());
+    @GetMapping("/latest/{id}")
+    public ResponseEntity<Firmware> latest(@PathVariable UUID id) {
+        return ResponseEntity.ok(firmwareService.getNewestFirmware(id));
     }
 }

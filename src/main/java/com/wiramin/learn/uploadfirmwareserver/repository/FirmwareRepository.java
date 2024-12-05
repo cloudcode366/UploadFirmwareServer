@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 public interface FirmwareRepository extends JpaRepository<Firmware, Long> {
-    @Query("select f from Firmware f order by f.firmwareVersion desc limit 1")
-    Firmware getNewestFirmware();
+    @Query("select f from Firmware f where f.idDevice.id = :id order by f.firmwareVersion desc limit 1")
+    Firmware getNewestFirmware(UUID id);
 }

@@ -6,6 +6,8 @@ import com.wiramin.learn.uploadfirmwareserver.service.FirmwareService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class FirmwareServiceImpl implements FirmwareService {
@@ -16,7 +18,7 @@ public class FirmwareServiceImpl implements FirmwareService {
         return true;
     }
     
-    public Firmware getNewestFirmware() {
-        return firmwareRepository.getNewestFirmware();
+    public Firmware getNewestFirmware(UUID uuid) {
+        return firmwareRepository.getNewestFirmware(uuid);
     }
 }
